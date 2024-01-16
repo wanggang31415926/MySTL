@@ -25,7 +25,15 @@ using m_false_type = m_bool_constant<false>;
 
 /*****************************************************************************************/
 
+template<typename T1, typename T2>
+struct pair;
 
-}
+template <typename T> 
+struct is_pair : mystl::m_false_type {};
+
+template <typename T1, typename T2>
+struct is_pair<mystl::pair<T1, T2>> :mystl::m_true_type {};
+}	//namespace systl
+
 #endif // !MY_STL_TYPE_TRAITS_H_
 
