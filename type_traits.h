@@ -10,18 +10,29 @@ namespace mystl
 {
 
 //helper struct
-template<typename T, T v>
+template<typename Tp, Tp val>
 struct m_intergral_constant
 {
-	static constexpr T value = v;
+	static constexpr Tp value = val;
+	using value_type = Tp;
+	using type = m_intergral_constant<Tp, val>;
+
+	constexpr operator value_type() const noexcept { return value; }
+	constexpr operator value_type()() const noexcept { return value; }
+
 };
 
+//template<typename Tp, Tp v>
+//constexpr Tp m_integral_constant<Tp, v>::value;
+
 //ÌØ»¯
-template <bool b>
-using m_bool_constant = m_intergral_constant<bool, b>;
+template <bool v>
+using m_bool_constant = m_intergral_constant<bool, v>;
 
 using m_true_type = m_bool_constant<true>;
 using m_false_type = m_bool_constant<false>;
+
+
 
 /*****************************************************************************************/
 
@@ -33,7 +44,7 @@ struct is_pair : mystl::m_false_type {};
 
 template <typename T1, typename T2>
 struct is_pair<mystl::pair<T1, T2>> : mystl::m_true_type {};
-}	//namespace systl
+}	//namespace mystl
 
 #endif // !MY_STL_TYPE_TRAITS_H_
 
