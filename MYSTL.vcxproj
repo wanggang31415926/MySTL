@@ -130,10 +130,22 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="algobase.h" />
+    <ClInclude Include="allocator.h" />
+    <ClInclude Include="astring.h" />
     <ClInclude Include="basic_string.h" />
+    <ClInclude Include="construct.h" />
+    <ClInclude Include="exceptdef.h" />
+    <ClInclude Include="functional.h" />
     <ClInclude Include="iterator.h" />
+    <ClInclude Include="memory.h" />
+    <ClInclude Include="string_test.h" />
+    <ClInclude Include="test.h" />
     <ClInclude Include="type_traits.h" />
+    <ClInclude Include="uninitialized.h" />
     <ClInclude Include="util.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="test.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

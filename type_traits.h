@@ -18,7 +18,7 @@ struct m_intergral_constant
 	using type = m_intergral_constant<Tp, val>;
 
 	constexpr operator value_type() const noexcept { return value; }
-	constexpr operator value_type()() const noexcept { return value; }
+	constexpr value_type operator()() const noexcept { return value; }
 
 };
 

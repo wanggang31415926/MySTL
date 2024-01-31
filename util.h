@@ -12,10 +12,10 @@ namespace mystl
 // 实现is_same
 // 类型不一样值为false
 template <typename, typename>
-struct is_same :public false_type {};
+struct is_same :public m_false_type {};
 
 template <typename T>
-struct is_same<T, T> :public true_type {};
+struct is_same<T, T> :public m_true_type {};
 
 template <typename T, typename U>
 constexpr bool is_same_v = is_same<T, U>::value;
@@ -104,7 +104,7 @@ template<typename Tp>
 constexpr bool is_pointer_v<Tp* const volatile> = true;
 
 template <typename Tp>
-struct is_pointer : m_bool_constant<is_pointer_v<TP>> {};
+struct is_pointer : m_bool_constant<is_pointer_v<Tp>> {};
 
 // 仅当布尔常量为 true 时，才定义成员 type。
 template <bool, typename Tp = void>
@@ -144,22 +144,22 @@ remove_reference_t<T>&& move(T&& __t) noexcept
 template <typename T>
 T&& forward(remove_reference_t<T>& arg) noexcept
 {
-    return static_cast<remove_reference_t<T>&&>(arg);
+    return static_cast<T&&>(arg);
 }
 
 template <typename T>
 T&& forward(remove_reference_t<T>&& arg) noexcept
 {
     //static_assert(!is_lvalue_reference_v<T>, "bad forward");
-    static_assert(!is_lvalue_reference<T>::value, "bad forward");
-    return static_cast<remove_reference_t<T>&&>(arg);
+    static_assert(!mystl::is_lvalue_reference<T>::value, "bad forward");
+    return static_cast<T&&>(arg);
 }
 
 template <typename Tp>
 void swap(Tp& lhs, Tp& rhs)
 {
-    auto tmp{ move(lhs) };
-    lsh = mystl::move(rhs);
+    auto tmp{ mystl::move(lhs) };
+    lhs = mystl::move(rhs);
     rhs = mystl::move(tmp);
 }
 
@@ -313,7 +313,7 @@ struct pair
         if (this != &rhs)
         {
             first_ = rhs.first_;
-            second = rhs.second_;
+            second_ = rhs.second_;
         }
         return *this;
     }
@@ -334,7 +334,7 @@ struct pair
         if (this != &rhs)
         {
             first_ = rhs.first_;
-            second = rhs.second_;
+            second_ = rhs.second_;
         }
         return *this;
     }

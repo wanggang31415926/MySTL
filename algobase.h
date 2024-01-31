@@ -185,7 +185,7 @@ template <typename T, typename U>
 	if (n != 0)
 	{
 		result -= n;
-		std::memmove(result, first, n * sizeof(Up));
+		std::memmove(result, first, n * sizeof(U));
 	}
 	return result;
 }

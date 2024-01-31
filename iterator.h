@@ -52,15 +52,15 @@ template <typename T>
 struct has_iterator_cat
 {
 private:
-	struct two{ char a, char b};
+	struct two { char a; char b; };
 	template <typename U>
 	static two test(...);
 	
 	template <typename U>
-	static char test(typename U::iterator_category* = nullptr);
+	static char test(typename U::iterator_category* = 0);
 
 public :
-	static const bool value = sizeof test<T>(0) == sizeof(char);
+	static const bool value = sizeof(test<T>(0)) == sizeof(char);
 };
 
 //template <typename T>
@@ -123,7 +123,7 @@ struct iterator_traits<T*>
 	using value_type				= T;
 	using pointer					= T*;
 	using reference					= T&;
-	using differencr_type			= ptrdiff_t;
+	using difference_type			= ptrdiff_t;
 };
 
 template <typename T>
@@ -133,7 +133,7 @@ struct iterator_traits<const T*>
 	using value_type				= T;
 	using pointer					= const T*;
 	using reference					= const T&;
-	using differencr_type			= ptrdiff_t;
+	using difference_type			= ptrdiff_t;
 };
 
 
@@ -368,7 +368,7 @@ public:
 	}
 	self operator+(difference_type n) const
 	{
-		return self{ current - n };
+		return self( current - n );
 	}
 	self& operator-=(difference_type n)
 	{
@@ -377,12 +377,12 @@ public:
 	}
 	self operator-(difference_type n) const
 	{
-		return self{ current + n };
+		return self( current + n );
 	}
 
 	reference operator[](difference_type n) const
 	{
-		return *{ *this + n };
+		return *(*this + n);
 	}
 };
 
