@@ -30,5 +30,23 @@
     <ClInclude Include="algobase.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="construct.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="allocator.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="uninitialized.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="memory.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="functional.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="exceptdef.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
