@@ -1258,6 +1258,7 @@ private:
 	}
 
 	// reallocate
+	//确保还有剩余容量 front变量判断是否在前端插入
 	void require_capacity(size_type n, bool front)
 	{
 		if (front && (static_cast<size_type>(begin_.cur - begin_.first) < n))
@@ -1284,6 +1285,7 @@ private:
 		}
 	}
 
+	//在前端再分配更大的空间
 	void reallocate_map_at_front(size_type need)
 	{
 		const size_type new_map_size = mystl::max(map_size_ << 1,
