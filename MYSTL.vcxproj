@@ -135,11 +135,13 @@
     <ClInclude Include="basic_string.h" />
     <ClInclude Include="construct.h" />
     <ClInclude Include="deque.h" />
+    <ClInclude Include="deque_test.h" />
     <ClInclude Include="exceptdef.h" />
     <ClInclude Include="functional.h" />
     <ClInclude Include="iterator.h" />
     <ClInclude Include="memory.h" />
     <ClInclude Include="stack.h" />
+    <ClInclude Include="stack_test.h" />
     <ClInclude Include="string_test.h" />
     <ClInclude Include="test.h" />
     <ClInclude Include="type_traits.h" />

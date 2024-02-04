@@ -1172,7 +1172,7 @@ public:
 			pos = size_ - 1;
 		}
 
-		for (auto i = pos; i >= 0; --i)
+		for (auto i = pos; i != 0; --i)
 		{
 			if (*(buffer_ + i) == ch)
 			{
@@ -1180,7 +1180,7 @@ public:
 			}
 		}
 		
-		return npos;
+		return front() == ch ? 0 : npos;
 	}
 
 	// 从下标 pos 开始反向查找字符串 str，与 find 类似
@@ -1199,14 +1199,14 @@ public:
 		}
 		else if (len == 1)	//相当于找一个字符
 		{
-			for (auto i = pos; i >= 0; --i)
+			for (auto i = pos; i != 0; --i)
 			{
 				if (*(buffer_ + i) == *str)
 				{
 					return i;
 				}
 			}
-			return npos;
+			return front() == *str ? 0 : npos;
 		}
 		else	//len >= 2
 		{

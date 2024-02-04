@@ -47,11 +47,11 @@ void construct(Ty* ptr, Args&& ...args)
 // destroy 将对象析构
 
 template <typename Ty>
-void destroy_one(Ty*, mystl::m_true_type) {}
+void destroy_one(Ty*, std::true_type) {}
 
 
 template <typename Ty>
-void destroy_one(Ty* ptr, mystl::m_false_type) 
+void destroy_one(Ty* ptr, std::false_type) 
 {
 	if (ptr != nullptr)
 	{
@@ -60,10 +60,10 @@ void destroy_one(Ty* ptr, mystl::m_false_type)
 }
 
 template <typename ForwardIter>
-void destroy_cat(ForwardIter, ForwardIter, mystl::m_true_type) {}
+void destroy_cat(ForwardIter, ForwardIter, std::true_type) {}
 
 template <typename ForwardIter>
-void destroy_cat(ForwardIter first, ForwardIter last, mystl::m_false_type) 
+void destroy_cat(ForwardIter first, ForwardIter last, std::false_type) 
 {
 	for (; first != last; ++first)
 	{

@@ -93,13 +93,13 @@ ForwardIter uninitialized_copy_n(InputIter first, Size n, ForwardIter result)
 // 在 [first, last) 区间内填充元素值
 /*****************************************************************************************/
 template <typename ForwardIter, typename T>
-void unchecked_uninit_fill(ForwardIter first, ForwardIter last, const T& value, mystl::m_true_type)
+void unchecked_uninit_fill(ForwardIter first, ForwardIter last, const T& value, std::true_type)
 {
     mystl::fill(first, last, value);
 }
 
 template <typename ForwardIter, typename T>
-void unchecked_uninit_fill(ForwardIter first, ForwardIter last, const T& value, mystl::m_false_type)
+void unchecked_uninit_fill(ForwardIter first, ForwardIter last, const T& value, std::false_type)
 {
     auto cur = first;
     try
@@ -129,13 +129,13 @@ void uninitialized_fill(ForwardIter first, ForwardIter last, const T& value)
 // 从 first 位置开始，填充 n 个元素值，返回填充结束的位置
 /*****************************************************************************************/
 template <typename ForwardIter, typename Size, typename T>
-ForwardIter unchecked_uninit_fill_n(ForwardIter first, Size n, const T& value, mystl::m_true_type)
+ForwardIter unchecked_uninit_fill_n(ForwardIter first, Size n, const T& value, std::true_type)
 {
     return mystl::fill_n(first, n, value);
 }
 
 template <typename ForwardIter, typename Size, typename T>
-ForwardIter unchecked_uninit_fill_n(ForwardIter first, Size n, const T& value, mystl::m_false_type)
+ForwardIter unchecked_uninit_fill_n(ForwardIter first, Size n, const T& value, std::false_type)
 {
     auto cur = first;
     try

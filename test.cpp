@@ -8,7 +8,8 @@
 #include <crtdbg.h>
 #endif // check memory leaks
 
-
+#include "deque_test.h"
+#include "stack_test.h"
 #include "string_test.h"
 
 int main()
@@ -17,7 +18,9 @@ int main()
 	using namespace mystl::test;
 
 	std::cout.sync_with_stdio(false);
-	//RUN_ALL_TESTS();
+	RUN_ALL_TESTS();
+	deque_test::deque_test();
+	stack_test::stack_test();
 	string_test::string_test();
 
 
