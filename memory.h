@@ -129,8 +129,8 @@ private:
 			len /= 2;	// 申请失败时减少申请空间大小
 		}
 	}
-	void initialize_buffer(const T&, mystl::m_true_type) {}
-	void initialize_buffer(const T& value, mystl::m_false_type)
+	void initialize_buffer(const T&, std::true_type) {}
+	void initialize_buffer(const T& value, std::false_type)
 	{
 		mystl::uninitialized_fill_n(buffer, len, value);
 	}

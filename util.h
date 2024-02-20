@@ -199,8 +199,8 @@ struct pair
     using first_type    = T1;
     using second_type   = T2;
 
-    first_type first_;
-    second_type second_;
+    first_type first;
+    second_type second;
 
     //默认可构造
     //enable_if 仅当布尔常量为 true 时，才定义成员 type。
@@ -212,7 +212,7 @@ struct pair
         std::enable_if<
         std::is_default_constructible<U1>::value &&
         std::is_default_constructible<U2>::value, void>::type>
-    constexpr pair() : first_(), second_()  {}
+    constexpr pair() : first(), second()  {}
 
 
     //此类型的隐式可构造对象
@@ -231,7 +231,7 @@ struct pair
         std::is_convertible<const U1&, T1>::value &&
         std::is_convertible<const U2&, T2>::value, int>::type = 0>
     constexpr pair(const T1& first, const T2& second)
-        : first_( first ), second_( second ) {}
+        : first( first ), second( second ) {}
 
 
     //显式可构造
@@ -242,7 +242,7 @@ struct pair
         (!std::is_convertible<const U1&, T1>::value ||
          !std::is_convertible<const U2&, T2>::value), int>::type = 0>
     explicit constexpr pair(const T1& first, const T2& second)
-        : first_{ first }, second_{ second } {}
+        : first{ first }, second{ second } {}
 
     pair(const pair& rhs) = default;
     pair(pair&& rhs) = default;
@@ -254,8 +254,8 @@ struct pair
         std::is_convertible<U1&&, T1>::value &&
         std::is_convertible<U2&&, T2>::value, int>::type = 0>
     constexpr pair (U1&& first, U2&& second)
-        : first_(mystl::forward<U1>(first)),
-        second_(mystl::forward<U2>(second)) {}
+        : first(mystl::forward<U1>(first)),
+        second(mystl::forward<U2>(second)) {}
 
     template <typename U1, typename U2,
         std::enable_if <
@@ -264,8 +264,8 @@ struct pair
         (!std::is_convertible<U1, T1>::value ||
          !std::is_convertible<U2, T2>::value), int>::type = 0>
     explicit constexpr pair(U1&& first, U2&& second)
-        : first_(mystl::forward<U1>(first)), 
-        second_(mystl::forward<U2>(second)) {}
+        : first(mystl::forward<U1>(first)),
+        second(mystl::forward<U2>(second)) {}
 
 
     template <typename U1, typename U2,
@@ -275,7 +275,7 @@ struct pair
         std::is_convertible<const U1&, T1>::value &&
         std::is_convertible<const U2&, T2>::value, int>::type = 0>
     constexpr pair(const pair<U1, U2>& other)
-        : first_(other.first_), second_(other.second_) {}
+        : first(other.first), second(other.second) {}
 
     template <typename U1, typename U2,
         std::enable_if<
@@ -284,7 +284,7 @@ struct pair
         (!std::is_convertible<const U1&, T1>::value ||
          !std::is_convertible<const U2&, T2>::value), int>::type = 0>
     explicit constexpr pair(const pair<U1, U2>& other)
-        : first_(other.first_), second_(other.second_) {}
+        : first(other.first), second(other.second) {}
 
 
     template <typename U1, typename U2,
@@ -294,8 +294,8 @@ struct pair
         std::is_convertible<U1, T1>::value &&
         std::is_convertible<U2, T2>::value, int>::type = 0>
     constexpr pair(pair<U1, U2>&& other)
-        : first_(mystl::forward<U1>(other.first_)),
-        second_(mystl::forward<U2>(other.second_)) {}
+        : first(mystl::forward<U1>(other.first)),
+        second(mystl::forward<U2>(other.second)) {}
 
 
     template <class U1, class U2,
@@ -305,15 +305,15 @@ struct pair
         (!std::is_convertible<U1, T1>::value ||
          !std::is_convertible<U2, T2>::value), int>::type = 0>
     explicit constexpr pair(pair<U1, U2>&& other)
-        : first_(mystl::forward<U1>(other.first_)),
-        second_(mystl::forward<U2>(other.second_)) {}
+        : first(mystl::forward<U1>(other.first)),
+        second(mystl::forward<U2>(other.second)) {}
 
     pair& operator = (const pair& rhs)
     {
         if (this != &rhs)
         {
-            first_ = rhs.first_;
-            second_ = rhs.second_;
+            first = rhs.first;
+            second = rhs.second;
         }
         return *this;
     }
@@ -322,8 +322,8 @@ struct pair
     {
         if (this != &rhs)
         {
-            first_ = mystl::move(rhs.first_);
-            second_ = mystl::move(rhs.second_);
+            first = mystl::move(rhs.first);
+            second = mystl::move(rhs.second);
         }
         return *this;
     }
@@ -333,8 +333,8 @@ struct pair
     {
         if (this != &rhs)
         {
-            first_ = rhs.first_;
-            second_ = rhs.second_;
+            first = rhs.first;
+            second = rhs.second;
         }
         return *this;
     }
@@ -344,8 +344,8 @@ struct pair
     {
         if (this != &rhs)
         {
-            first_ = mystl::forward<U1>(rhs.first_);
-            second_ = mystl::forward<U2>(rhs.second_);
+            first = mystl::forward<U1>(rhs.first);
+            second = mystl::forward<U2>(rhs.second);
         }
         return *this;
     }
@@ -356,8 +356,8 @@ struct pair
     {
         if (this != &other)
         {
-            mystl::swap(first_, other.first_);
-            mystl::swap(second_, other.second_);
+            mystl::swap(first, other.first);
+            mystl::swap(second, other.second);
         }
     }
 
@@ -368,7 +368,7 @@ struct pair
 template <typename T1, typename T2>
 bool operator == (const pair<T1, T2>& lhs, const pair<T1, T2>& rhs)
 {
-    return lhs.first_ = rhs.first_ && lhs.second_ = rhs.second_;
+    return lhs.first = rhs.first && lhs.second = rhs.second;
 }
 
 template <typename T1, typename T2>

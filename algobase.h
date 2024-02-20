@@ -539,12 +539,12 @@ bool lexicographical_compare(InputIter1 first1, InputIter1 last1,
 
 	while (first1 != last1 && first2 != last2)
 	{
-		if (comp(*first1 < *first2))
+		if (comp(*first1, *first2))
 		{
 			return true;
 		}
 
-		if (comp(*first2 < *first1))
+		if (comp(*first2, *first1))
 		{
 			return false;
 		}

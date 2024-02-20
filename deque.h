@@ -35,7 +35,7 @@ namespace mystl
 #undef min
 #endif // min
 
-    // deque map 初始化的大小
+// deque map 初始化的大小
 #ifndef DEQUE_MAP_INIT_SIZE
 #define DEQUE_MAP_INIT_SIZE 8
 #endif
@@ -50,19 +50,19 @@ struct deque_buf_size
 template <typename T, typename Ref, typename Ptr>
 struct deque_iterator : public iterator<random_access_iterator_tag, T>
 {
-    using iterator                      = deque_iterator<T, T&, T*>;
-    using const_iterator                = deque_iterator<T, const T&, const T*>;
-    using self                          = deque_iterator;
+    using iterator          = deque_iterator<T, T&, T*>;
+    using const_iterator    = deque_iterator<T, const T&, const T*>;
+    using self              = deque_iterator;
 
-    using value_type                    = T;
-    using pointer                       = Ptr;
-    using reference                     = Ref;
-    using size_type                     = size_t;
-    using difference_type               = ptrdiff_t;
-    using value_pointer                 = T*;
-    using map_pointer                   = T**;
+    using value_type        = T;
+    using pointer           = Ptr;
+    using reference         = Ref;
+    using size_type         = size_t;
+    using difference_type   = ptrdiff_t;
+    using value_pointer     = T*;
+    using map_pointer       = T**;
 
-    static const size_type buffer_size  = deque_buf_size<T>::value;
+    static const size_type buffer_size = deque_buf_size<T>::value;
 
     // 迭代器所含成员数据
     value_pointer cur;    // 指向所在缓冲区的当前元素
@@ -130,7 +130,7 @@ struct deque_iterator : public iterator<random_access_iterator_tag, T>
         ++cur;
         // 如果到达缓冲区的尾
         if (cur == last)
-        { 
+        {
             set_node(node + 1);
             cur = first;
         }
@@ -148,7 +148,7 @@ struct deque_iterator : public iterator<random_access_iterator_tag, T>
     {
         // 如果到达缓冲区的头
         if (cur == first)
-        { 
+        {
             set_node(node - 1);
             cur = last;
         }
@@ -169,11 +169,11 @@ struct deque_iterator : public iterator<random_access_iterator_tag, T>
 
         // 仍在当前缓冲区
         if (offset >= 0 && offset < static_cast<difference_type>(buffer_size))
-        { 
+        {
             cur += n;
         }
         else    // 要跳到其他的缓冲区
-        { 
+        {
             const auto node_offset = offset > 0
                 ? offset / static_cast<difference_type>(buffer_size)
                 : -static_cast<difference_type>((-offset - 1) / buffer_size) - 1;
@@ -467,7 +467,7 @@ public:
     reference back()
     {
         MYSTL_DEBUG(!empty());
-        return *(end_- 1);
+        return *(end_ - 1);
     }
 
     const_reference back() const
@@ -772,7 +772,7 @@ public:
 
         // 有两个以上的缓冲区
         if (begin_.node != end_.node)
-        { 
+        {
             mystl::destroy(begin_.cur, begin_.last);
             mystl::destroy(end_.first, end_.cur);
         }

@@ -58,7 +58,7 @@ ForwardIter uninitialized_copy(InputIter first, InputIter last, ForwardIter resu
 template <typename InputIter, typename Size, typename ForwardIter>
 ForwardIter unchecked_uninit_copy_n(InputIter first, Size n, ForwardIter result, std::true_type)
 {
-    return mystl::copy_n(first, n, result).second_;
+    return mystl::copy_n(first, n, result).second;
 }
 
 template <typename InputIter, typename Size, typename ForwardIter>
@@ -166,13 +166,13 @@ ForwardIter uninitialized_fill_n(ForwardIter first, Size n, const T& value)
 // 把[first, last)上的内容移动到以 result 为起始处的空间，返回移动结束的位置
 /*****************************************************************************************/
 template <typename InputIter, typename ForwardIter>
-ForwardIter unchecked_uninit_move(InputIter first, InputIter last, ForwardIter result, mystl::m_true_type)
+ForwardIter unchecked_uninit_move(InputIter first, InputIter last, ForwardIter result, std::true_type)
 {
     return mystl::move(first, last, result);
 }
 
 template <typename InputIter, typename ForwardIter>
-ForwardIter unchecked_uninit_move(InputIter first, InputIter last, ForwardIter result, mystl::m_false_type)
+ForwardIter unchecked_uninit_move(InputIter first, InputIter last, ForwardIter result, std::false_type)
 {
     ForwardIter cur = result;
     try
