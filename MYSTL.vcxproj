@@ -144,6 +144,8 @@
     <ClInclude Include="functional.h" />
     <ClInclude Include="heap_algo.h" />
     <ClInclude Include="iterator.h" />
+    <ClInclude Include="list.h" />
+    <ClInclude Include="list_test.h" />
     <ClInclude Include="memory.h" />
     <ClInclude Include="numeric.h" />
     <ClInclude Include="set_algo.h" />
