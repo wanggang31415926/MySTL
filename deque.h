@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 #ifndef MY_STL_DEQUE_H_
 #define MY_STL_DEQUE_H_
 
@@ -1387,5 +1386,3 @@ void swap(deque<T>& lhs, deque<T>& rhs)
 
 #endif // !MY_STL_DEQUE_H_
 
-=======
->>>>>>> aaabbd8d6369ed98865c3e38d57535e99742a3f7
