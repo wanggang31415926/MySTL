@@ -1385,4 +1385,3 @@ void swap(deque<T>& lhs, deque<T>& rhs)
 } // namespace mystl
 
 #endif // !MY_STL_DEQUE_H_
-
