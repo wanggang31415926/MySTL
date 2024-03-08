@@ -146,10 +146,12 @@
     <ClInclude Include="iterator.h" />
     <ClInclude Include="list.h" />
     <ClInclude Include="list_test.h" />
+    <ClInclude Include="map.h" />
     <ClInclude Include="memory.h" />
     <ClInclude Include="numeric.h" />
     <ClInclude Include="queue.h" />
     <ClInclude Include="queue_test.h" />
+    <ClInclude Include="rb_tree.h" />
     <ClInclude Include="set_algo.h" />
     <ClInclude Include="stack.h" />
     <ClInclude Include="stack_test.h" />
