@@ -148,6 +148,8 @@
     <ClInclude Include="list_test.h" />
     <ClInclude Include="memory.h" />
     <ClInclude Include="numeric.h" />
+    <ClInclude Include="queue.h" />
+    <ClInclude Include="queue_test.h" />
     <ClInclude Include="set_algo.h" />
     <ClInclude Include="stack.h" />
     <ClInclude Include="stack_test.h" />

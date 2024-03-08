@@ -13,6 +13,7 @@
 #include "vector_test.h"
 #include "list_test.h"
 #include "deque_test.h"
+#include "queue_test.h"
 #include "stack_test.h"
 #include "string_test.h"
 
@@ -29,6 +30,8 @@ int main()
 	vector_test::vector_test();
 	list_test::list_test();
 	deque_test::deque_test();
+	queue_test::queue_test();
+	queue_test::priority_test();
 	stack_test::stack_test();
 	string_test::string_test();
 

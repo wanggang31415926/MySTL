@@ -102,6 +102,12 @@
     <ClInclude Include="list_test.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="queue_test.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="queue.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="test.cpp">
