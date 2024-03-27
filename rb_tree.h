@@ -192,7 +192,7 @@ struct rb_tree_traits
 	using reference				= value_type&;
 	using const_pointer			= const value_type*;
 	using const_reference		= const value_type&;
-
+	
 
 	using base_type				= rb_tree_node_base<T>;
 	using node_type				= rb_tree_node<T>;
@@ -283,7 +283,7 @@ struct rb_tree_iterator : public rb_tree_iterator_base<T>
 
 	rb_tree_iterator() {}
 	rb_tree_iterator(base_ptr x) { node = x; }
-	rb_tree_iterator(node_ptr x) { node = x; }
+	rb_tree_iterator(node_ptr x) { node = x; }	
 	rb_tree_iterator(const iterator& rhs) { node = rhs.node; }
 	rb_tree_iterator(const const_iterator& rhs) { node = rhs.node; }
 
@@ -495,17 +495,17 @@ void rb_tree_rotate_right(NodePtr x, NodePtr& root) noexcept
 	y->parent = x->parent;
 
 	if (x == root)
-	{
+	{ 
 		// 如果 x 为根节点，让 y 顶替 x 成为根节点
 		root = y;
 	}
 	else if (rb_tree_is_lchild(x))
-	{
+	{ 
 		// 如果 x 是右子节点
 		x->parent->left = y;
 	}
 	else
-	{
+	{ 
 		// 如果 x 是左子节点
 		x->parent->right = y;
 	}
@@ -530,7 +530,7 @@ template <typename NodePtr>
 void rb_tree_insert_rebalance(NodePtr x, NodePtr& root) noexcept
 {
 	rb_tree_set_red(x);		// 新增节点为红色
-
+	
 	// 父节点为红
 	while (x != root && rb_tree_is_red(x->parent))
 	{
@@ -538,7 +538,7 @@ void rb_tree_insert_rebalance(NodePtr x, NodePtr& root) noexcept
 		if (rb_tree_is_lchild(x->parent))
 		{
 			auto uncle = x->parent->parent->right;
-
+			
 			// case 3: 父节点和叔叔节点都为红
 			if (uncle != nullptr && rb_tree_is_red(uncle))
 			{
@@ -568,7 +568,7 @@ void rb_tree_insert_rebalance(NodePtr x, NodePtr& root) noexcept
 
 			// case 3: 父节点和叔叔节点都为红
 			if (uncle != nullptr && rb_tree_is_red(uncle))
-			{
+			{ 
 				rb_tree_set_black(x->parent);
 				rb_tree_set_black(uncle);
 				x = x->parent->parent;
@@ -576,10 +576,10 @@ void rb_tree_insert_rebalance(NodePtr x, NodePtr& root) noexcept
 				// 此时祖父节点为红，可能会破坏红黑树的性质，令当前节点为祖父节点，继续处理
 			}
 			else    // 无叔叔节点或叔叔节点为黑
-			{
+			{ 
 				// case 4: 当前节点 x 为左子节点
 				if (rb_tree_is_lchild(x))
-				{
+				{ 
 					x = x->parent;
 					rb_tree_rotate_right(x, root);
 				}
@@ -720,7 +720,7 @@ NodePtr rb_tree_erase_rebalance(NodePtr z, NodePtr& root, NodePtr& leftmost, Nod
 				// case 2
 				if ((brother->left == nullptr || !rb_tree_is_red(brother->left)) &&
 					(brother->right == nullptr || !rb_tree_is_red(brother->right)))
-				{
+				{ 
 					rb_tree_set_red(brother);
 					x = xp;
 					xp = xp->parent;
@@ -867,7 +867,7 @@ public:
 	// 复制赋值操作符
 	rb_tree& operator=(const rb_tree& rhs)
 	{
-		if (this != &rhs)
+		if (this != &rhs) 
 		{
 			clear();
 
@@ -883,7 +883,7 @@ public:
 		return *this;
 	}
 
-	rb_tree& operator=(rb_tree&& rhs)
+	rb_tree& operator=(rb_tree&& rhs) noexcept
 	{
 		clear();
 		header_ = mystl::move(rhs.header_);
@@ -977,10 +977,10 @@ public:
 		THROW_LENGTH_ERROR_IF(node_count_ > max_size() - 1, "rb_tree<T, Comp>'s size too big");
 		node_ptr np = create_node(mystl::forward<Args>(args)...);
 		auto res = get_insert_unique_pos(value_traits::get_key(np->value));
-
+		
 		// 插入成功
 		if (res.second)
-		{
+		{ 
 			return mystl::make_pair(insert_node_at(res.first.first, np, res.first.second), true);
 		}
 		destroy_node(np);
@@ -1118,7 +1118,7 @@ public:
 		{
 			return mystl::make_pair(insert_value_at(res.first.first, value, res.first.second), true);
 		}
-		return mystl::make_pair(res.first, false);
+		return mystl::make_pair(res.first.first, false);
 	}
 	mystl::pair<iterator, bool> insert_unique(value_type&& value)
 	{
@@ -1237,7 +1237,7 @@ public:
 				x = x->left;
 			}
 			else
-			{
+			{ 
 				x = x->right;
 			}
 		}
@@ -1258,8 +1258,8 @@ public:
 	// 键值不小于 key 的第一个位置
 	iterator lower_bound(const key_type& key)
 	{
-		auto x = header_;
-		auto y = root();
+		auto y = header_;
+		auto x = root();
 		while (x != nullptr)
 		{
 			if (!key_comp_(value_traits::get_key(x->get_node_ptr()->value), key))
@@ -1276,8 +1276,8 @@ public:
 	}
 	const_iterator lower_bound(const key_type& key) const
 	{
-		auto x = header_;
-		auto y = root();
+		auto y = header_;
+		auto x = root();
 		while (x != nullptr)
 		{
 			if (!key_comp_(value_traits::get_key(x->get_node_ptr()->value), key))
@@ -1295,8 +1295,8 @@ public:
 
 	iterator upper_bound(const key_type& key)
 	{
-		auto x = header_;
-		auto y = root();
+		auto y = header_;
+		auto x = root();
 		while (x != nullptr)
 		{
 			if (key_comp_(key, value_traits::get_key(x->get_node_ptr()->value)))
@@ -1313,8 +1313,8 @@ public:
 	}
 	const_iterator upper_bound(const key_type& key) const
 	{
-		auto x = header_;
-		auto y = root();
+		auto y = header_;
+		auto x = root();
 		while (x != nullptr)
 		{
 			if (key_comp_(key, value_traits::get_key(x->get_node_ptr()->value)))
@@ -1482,7 +1482,7 @@ private:
 
 		// 新节点没有重复
 		if (key_comp_(value_traits::get_key(*j), key))
-		{
+		{ 
 			return mystl::make_pair(mystl::make_pair(y, add_to_left), true);
 		}
 		// 进行至此，表示新节点与现有节点键值重复

@@ -178,13 +178,13 @@ template <typename T, typename Container = mystl::vector<T>,
 class priority_queue
 {
 public:
-	using container_type = Container;
-	using value_compare = Compare;
+	using container_type	= Container;
+	using value_compare		= Compare;
 	// 使用底层容器的型别
-	using value_type = Container::value_type;
-	using size_type = Container::size_type;
-	using reference = Container::reference;
-	using const_reference = Container::const_reference;
+	using value_type		= Container::value_type;
+	using size_type			= Container::size_type;
+	using reference			= Container::reference;
+	using const_reference	= Container::const_reference;
 
 	static_assert(mystl::is_same_v<T, value_type>,
 		"the value_type of Container should be same with T");
@@ -241,7 +241,7 @@ public:
 	{
 		mystl::make_heap(c_.begin(), c_.end(), comp_);
 	}
-	priority_queue(priority_queue&& rhs)
+	priority_queue(priority_queue&& rhs) noexcept
 		:c_{ mystl::move(rhs.c_) }, comp_{ rhs.comp_ }
 	{
 		mystl::make_heap(c_.begin(), c_.end(), comp_);
@@ -254,7 +254,7 @@ public:
 		mystl::make_heap(c_.begin(), c_.end(), comp_);
 		return *this;
 	}
-	priority_queue& operator=(priority_queue&& rhs)
+	priority_queue& operator=(priority_queue&& rhs) noexcept
 	{
 		c_ = mystl::move(rhs.c_);
 		comp_ = rhs.comp_;
