@@ -17,6 +17,7 @@
 #include "stack_test.h"
 #include "map_test.h"
 #include "set_test.h"
+#include "unordered_map_test.h"
 #include "string_test.h"
 
 
@@ -39,6 +40,8 @@ int main()
 	map_test::multimap_test();
 	set_test::set_test();
 	set_test::multiset_test();
+	unordered_map_test::unordered_map_test();
+	unordered_map_test::unordered_multimap_test();
 	string_test::string_test();
 
 
