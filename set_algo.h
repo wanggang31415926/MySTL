@@ -36,6 +36,7 @@ OutputIter set_union(InputIter1 first1, InputIter1 last1,
 			++first1;
 			++first2;
 		}
+		++result;
 	}
 	// ½«Ê£ÓàÔªËØ¿½±´µ½ result
 	return mystl::copy(first2, last2, mystl::copy(first1, last1, result));

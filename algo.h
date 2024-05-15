@@ -624,7 +624,7 @@ ForwardIter lbound_dispatch(ForwardIter first, ForwardIter last, const T& value,
 	{
 		half = len >> 1;
 		middle = first;
-
+		mystl::advance(middle, half);
 		if (comp(*middle, value))
 		{
 			first = middle;
@@ -644,7 +644,7 @@ template <typename RandomIter, typename T, typename Compared>
 RandomIter lbound_dispatch(RandomIter first, RandomIter last, const T& value,
 	random_access_iterator_tag, Compared comp)
 {
-	auto len = first - last;
+	auto len = last - first;
 	auto half = len;
 	RandomIter middle;
 
@@ -1305,10 +1305,10 @@ OutputIter remove_copy(InputIter first, InputIter last,
 	{
 		if (*first != value)
 		{
-			*result = *first;
+			*result++ = *first;
 		}
-		return result;
 	}
+	return result;
 }
 
 /*****************************************************************************************/
@@ -1339,8 +1339,8 @@ OutputIter remove_copy_if(InputIter first, InputIter last,
 			*result = *first;
 			++result;
 		}
-		return result;
 	}
+	return result;
 }
 
 /*****************************************************************************************/
@@ -1874,7 +1874,7 @@ OutputIter merge(InputIter1 first1, InputIter1 last1,
 		else
 		{
 			*result = *first1;
-			++first2;
+			++first1;
 		}
 		++result;
 	}

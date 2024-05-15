@@ -18,6 +18,7 @@
 #include "map_test.h"
 #include "set_test.h"
 #include "unordered_map_test.h"
+#include "unordered_set_test.h"
 #include "string_test.h"
 
 
@@ -42,8 +43,10 @@ int main()
 	set_test::multiset_test();
 	unordered_map_test::unordered_map_test();
 	unordered_map_test::unordered_multimap_test();
+	unordered_set_test::unordered_set_test();
+	unordered_set_test::unordered_multiset_test();
 	string_test::string_test();
-
+	return 0;
 
 #if defined(_MSC_VER) && defined(_DEBUG)
 	_CrtDumpMemoryLeaks();

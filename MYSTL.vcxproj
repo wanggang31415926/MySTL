@@ -164,6 +164,8 @@
     <ClInclude Include="uninitialized.h" />
     <ClInclude Include="unordered_map.h" />
     <ClInclude Include="unordered_map_test.h" />
+    <ClInclude Include="unordered_set.h" />
+    <ClInclude Include="unordered_set_test.h" />
     <ClInclude Include="util.h" />
     <ClInclude Include="vector.h" />
     <ClInclude Include="vector_test.h" />

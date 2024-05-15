@@ -926,7 +926,7 @@ TEST(remove_copy_if_test)
     std::remove_copy_if(arr1, arr1 + 10, exp, is_odd);
     mystl::remove_copy_if(arr1, arr1 + 10, act, is_odd);
     EXPECT_CON_EQ(exp, act);
-    std::remove_copy_if(arr1, arr1 + 10, exp, is_even);
+    std::remove_copy_if(arr1, arr1 + 10, exp, is_even); 
     mystl::remove_copy_if(arr1, arr1 + 10, act, is_even);
     EXPECT_CON_EQ(exp, act);
 }
